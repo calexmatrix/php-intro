@@ -1,40 +1,44 @@
 <?php
+    session_start();
 
-$categorias = [];
-$categorias[] = 'infantil';
-$categorias[] = 'adolescente';
-$categorias[] = 'adulto';
-$categorias[] = 'idoso';
+?>
 
-$nome = 'Eduardo';
-$idade = 8;
+<DOCTYPE html>
+<html>
 
-//var_dump($nome);
-//var_dump($idade);
+<head>
+    <meta charset="utf-8">
+    <title> Formulário de inscrição </title>
+    <meta name="author" content="">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
 
-if($idade >= 6 && $idade <= 12)
-{
-     for($i =0; $i <= count($categorias); $i++)
-     {
-        if($categorias[$i] == 'infantil')
-            echo "O nadador ", $nome , "compete na categoria infantil";
-     }
-}
-else if($idade >= 13 && $idade <= 18)
-{
-    for($i =0; $i <= count($categorias); $i++)
-     {
-        if($categorias[$i] == 'adolescente')
-            echo "O nadador ", $nome , "compete na categoria adolescente";
-     }
-}
-else
-{
-    for($i =0; $i <= count($categorias); $i++)
-    {
-       if($categorias[$i] == 'adulto')
-           echo "O nadador ", $nome , "compete na categoria adulto";
-    }
-}
+<body>
+<p>FORMULARIO PARA INSCRIÇÃO DE COMPETIDORES</p>
 
-//print_r($categorias);
+<form action="script.php" method="post">
+    <?php
+    $mensagemDeErro = isset($_SESSION['mensagem-de-erro']) ? $_SESSION['mensagem-de-erro'] : '';
+        if(!empty($mensagemDeErro))
+        {
+        echo $mensagemDeErro;
+
+        }
+        $mensagemDeSucesso = isset($_SESSION['mensagem-de-sucesso']) ? $_SESSION['mensagem-de-sucesso'] : '';
+        if(!empty($mensagemDeSucesso))
+        {
+        echo $mensagemDeSucesso;
+
+        }
+
+
+    ?>
+    <p>Seu nome: <input type="text" name="nome" /></p>
+    <p>Sua idade: <input type="text" name="idade" /></p>
+    <p><input type="submit" /></p>
+</form>
+
+</body>
+
+</html>
